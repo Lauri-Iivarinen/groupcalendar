@@ -25,7 +25,12 @@ public class WebSecurityConfig {
 	public SecurityFilterChain configure(HttpSecurity http) throws Exception{
 		http
 			.authorizeRequests()
+				.antMatchers("/h2-console/**").permitAll()
 				.anyRequest().permitAll()
+				.and()
+				.csrf().ignoringAntMatchers("/h2-console/**")
+				.and()
+	        	  .headers().frameOptions().sameOrigin()
 				.and()
 			.formLogin()
 				//.loginPage("/login")

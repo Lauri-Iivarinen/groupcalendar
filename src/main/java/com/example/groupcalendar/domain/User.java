@@ -1,10 +1,15 @@
 package com.example.groupcalendar.domain;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 
 
 @Entity(name="users")
@@ -14,17 +19,42 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(nullable=false , updatable=false)
 	private Long id;
+	
 	@Column(nullable=false)
 	private String username;
+	
 	@Column(name="password", nullable=false)
 	private String pwHash;
+	
+	@Column(nullable=false)
+	private String firstName;
+	
+	@Column(nullable=false)
+	private String lastName;
+	
+	/*
+	 * 
+	 * @JoinTable(
+  name = "course_like", 
+  joinColumns = @JoinColumn(name = "student_id"), 
+  inverseJoinColumns = @JoinColumn(name = "course_id"))
+	 */
+	
+	
+	@Column(nullable=true)
+	@ManyToMany
+	
+	private List<Group> groups;
+	
 	@Column(nullable=false)
 	private String role;
-	
-	public User(String username, String pwHash, String role) {
+
+	public User(String username, String pwHash, String firstName, String lastName, String role) {
 		super();
 		this.username = username;
 		this.pwHash = pwHash;
+		this.firstName = firstName;
+		this.lastName = lastName;
 		this.role = role;
 	}
 
@@ -44,6 +74,14 @@ public class User {
 		return pwHash;
 	}
 
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
 	public String getRole() {
 		return role;
 	}
@@ -60,12 +98,31 @@ public class User {
 		this.pwHash = pwHash;
 	}
 
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
 	public void setRole(String role) {
 		this.role = role;
 	}
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", username=" + username + ", pwHash=" + pwHash + ", role=" + role + "]";
+		return "User [id=" + id + ", username=" + username + ", pwHash=" + pwHash + ", firstName=" + firstName
+				+ ", lastName=" + lastName + ", role=" + role + "]";
 	}
+
+	public List<Group> getGroups() {
+		return groups;
+	}
+
+	public void setGroups(List<Group> groups) {
+		this.groups = groups;
+	}
+
+	
 }
