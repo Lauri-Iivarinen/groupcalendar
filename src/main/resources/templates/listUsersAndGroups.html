@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <title>Group calendar</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link type="text/css" rel="stylesheet" href="/css/bootstrap.css" th:href="@{/css/bootstrap.css}" />
+</head>
+<body>
+	<h1>Group calendar</h1>
+	<br />
+	<h3>Users:</h3>
+	<table class="list">
+		<tr><th>Id</th><th>Username</th><th>FirstName</th><th>LastName</th></tr>
+		<tr th:each="user : ${users}">
+		<td th:text="${user.id}"></td>
+		<td th:text="${user.username}"></td>
+		<td th:text="${user.firstName}"></td>
+		<td th:text="${user.lastName}"></td>
+		</tr>
+	</table>
+	<br>
+	<h3>Groups:</h3>
+	<table class="list">
+		<tr><th>Id</th><th>Group Name</th><th>Owner</th></tr>
+		<tr th:each="group: ${groups}">
+			<td th:text="${group.groupId}"></td>
+			<td th:text="${group.groupName}"></td>
+			<td th:text="${group.owner}"></td>
+		</tr>
+	</table>
+	
+	<style>
+	
+	.list{
+	background-color: black;
+	}
+	td,th{
+	background-color: white;
+	}
+	
+	</style>
+</body>
+</html>

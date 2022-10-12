@@ -36,8 +36,13 @@ public class GroupcalendarApplication {
 		return (args) ->{
 			log.info("testi");
 			
+			/*
+			 * 
+			 * ----TEST DATA FOR h2 DATABASE, WILL BE REMOVED ON SUCCESFULL LAUNCH--
+			 * 
+			 */
 			
-			//--------------KÄYTTÄJÄT------------
+			//--------------USERS------------
 			//pw: kayttaja
 			User user = new User("user", "$2a$10$qZ8pfMseEhulhwJgIz88LO0lV5YYZe2zalTeTprISc6Gv4ZIAQ0ei", "Lauri", "Lapanen", "USER");
 			userRepo.save(user);
@@ -50,7 +55,7 @@ public class GroupcalendarApplication {
 			User kissa = new User("cat","$2a$10$SgS1pO0KbVjPrYO5RLrNJuPx1.4yzzKnMTr3JZM42Zdn8JY0fRQEW","cat","katten","USER");
 			userRepo.save(kissa);
 			
-			//--------------RYHMÄT------------
+			//--------------GROUPS------------
 			List<User> family = new ArrayList<User>();
 			family.add(user);
 			
@@ -67,12 +72,12 @@ public class GroupcalendarApplication {
 			groupRepo.save(group2);
 			
 			
-			//--------------TAPAHTUMAT------------
+			//--------------EVENTS------------
 			List<User> attendants = new ArrayList<User>();
 			
 			eventRepo.save(new Event("bday","mcdonalds","2.2.2022",attendants,group1));
 			
-			//--------------RYHMÄÄN HAKIJAT------------
+			//--------------GROUP APPLICANTS------------
 			List<User> applicants = new ArrayList<User>();
 			applicants.add(kissa);
 			group1.setApplicants(applicants);
