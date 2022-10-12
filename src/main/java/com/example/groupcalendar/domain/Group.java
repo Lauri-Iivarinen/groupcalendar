@@ -26,6 +26,11 @@ public class Group {
 	@ManyToMany
 	private List<User> members;
 	
+	@ManyToMany
+	private List<User> applicants;
+	
+	
+
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "group")
 	private List<Event> events;
 	
@@ -60,6 +65,14 @@ public class Group {
 
 
 
+	public void setApplicants(List<User> applicants) {
+		this.applicants = applicants;
+	}
+
+	public void setEvents(List<Event> events) {
+		this.events = events;
+	}
+
 	public void setMembers(List<User> members) {
 		this.members = members;
 	}
@@ -86,6 +99,13 @@ public class Group {
 
 	public Long getOwner() {
 		return owner;
+	}
+	public List<User> getApplicants() {
+		return applicants;
+	}
+
+	public List<Event> getEvents() {
+		return events;
 	}
 
 	public void setOwner(Long owner) {

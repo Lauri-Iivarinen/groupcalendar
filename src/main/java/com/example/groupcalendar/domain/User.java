@@ -32,19 +32,24 @@ public class User {
 	@Column(nullable=false)
 	private String lastName;
 	
-	/*
-	 * 
-	 * @JoinTable(
-  name = "course_like", 
-  joinColumns = @JoinColumn(name = "student_id"), 
-  inverseJoinColumns = @JoinColumn(name = "course_id"))
-	 */
-	
-	
+	@JoinTable(
+			name = "group_list", 
+			joinColumns = @JoinColumn(name = "id"), 
+			inverseJoinColumns = @JoinColumn(name = "groupId"))
 	@Column(nullable=true)
 	@ManyToMany
-	
 	private List<Group> groups;
+	
+	
+	 @JoinTable(
+			 name = "applicant_list", 
+			 joinColumns = @JoinColumn(name = "id"), 
+			 inverseJoinColumns = @JoinColumn(name = "groupId"))
+	@Column(nullable=true)
+	@ManyToMany
+	private List<Group> applicationList;
+	
+	
 	
 	@Column(nullable=false)
 	private String role;
