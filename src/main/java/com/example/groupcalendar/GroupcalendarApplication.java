@@ -31,6 +31,8 @@ public class GroupcalendarApplication {
 	}
 
 	
+	//kommentoitu poist kun postgre käytössä
+	
 	@Bean
 	public CommandLineRunner launchTestBook (UserRepository userRepo, GroupRepository groupRepo, EventRepository eventRepo) {
 		return (args) ->{
@@ -40,8 +42,8 @@ public class GroupcalendarApplication {
 			 * 
 			 * ----TEST DATA FOR h2 DATABASE, WILL BE REMOVED ON SUCCESFULL LAUNCH--
 			 * 
-			 */
-			
+			 *
+			*/
 			//--------------USERS------------
 			//pw: kayttaja
 			User user = new User("user", "$2a$10$qZ8pfMseEhulhwJgIz88LO0lV5YYZe2zalTeTprISc6Gv4ZIAQ0ei", "Lauri", "Lapanen", "USER");
@@ -85,4 +87,5 @@ public class GroupcalendarApplication {
 			
 		};
 	}
+	
 }

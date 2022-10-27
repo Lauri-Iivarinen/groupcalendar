@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <title>Group calendar</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link type="text/css" rel="stylesheet" href="/css/bootstrap.css" th:href="@{/css/bootstrap.css}" />
+</head>
+<body>
+	<form th:object="${newUser}" th:action="@{newuser}" action="#" method="post">
+	<h1>Create new account:</h1>
+		<div class="form">
+			<label class="label">First name:</label><input th:field="*{firstName}"/>
+			<p th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">error</p>
+		</div>
+		<div class="form">
+			<label class="label">Last name:</label><input th:field="*{lastName}"/>
+			<p th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">error</p>
+		</div>
+		<div class="form">
+			<label class="label">Username:</label><input th:field="*{username}"/>
+			<p th:if="${#fields.hasErrors('username')}" th:errors="*{username}">error</p>	
+		</div>
+		<div class="form">
+			<label class="label">Password:</label><input type="password" th:field="*{password}"/>
+			<p th:if="${#fields.hasErrors('password')}" th:errors="*{password}">error</p>	
+		</div>
+		<div class="form">
+			<label class="label">Repeat password:</label><input type="password" th:field="*{passwordCheck}"/>
+			<p th:if="${#fields.hasErrors('passwordCheck')}" th:errors="*{passwordCheck}">error</p>	
+		</div><br />
+		<div>
+			<input type="submit" value="Signup"/>
+		</div>
+	</form>
+	<style>
+	
+	form{
+	margin-top: 50px;
+	margin-left: 50px;
+	padding: 20px;
+	background-color: rgb(230,230,255);
+	width: 300px;
+	border-radius: 15px;
+	}
+	
+	.form{
+		padding: 5px;
+		margin-top: 10px;
+		border-style: solid;
+		width: 200px;
+		background-color: rgb(255,255,255);
+	}
+	
+	.label{
+		margin-right: 5px;
+	}
+	p{
+	color: red;
+	}
+	
+	</style>
+</body>
+</html>

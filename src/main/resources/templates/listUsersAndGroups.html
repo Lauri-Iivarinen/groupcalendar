@@ -6,6 +6,10 @@
     <link type="text/css" rel="stylesheet" href="/css/bootstrap.css" th:href="@{/css/bootstrap.css}" />
 </head>
 <body>
+	<form class="logout" th:action="@{/logout}" method="post">
+		<input type="submit" value="logout"/>
+	</form>
+	<style>.logout{padding-top: 1%; padding-right: 1%; float: right;}</style>
 	<h1>Group calendar</h1>
 	<br />
 	<h3>Users:</h3>
