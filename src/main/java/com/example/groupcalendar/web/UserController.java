@@ -23,17 +23,20 @@ public class UserController {
 	@Autowired
 	private UserRepository userRepo;
 	
+	//LOGIN PAGE
 	@GetMapping("/login")
 	public String loginPage() {
 		return "login";
 	}
 
+	//SIGNPU PAGE
 	@GetMapping("/signup")
 	public String getSignupForm(Model model) {
 		model.addAttribute("newUser",new NewUserForm());
 		return "signup";
 	}
 	
+	//CHECKS VALID INPUTS AND SAVES NEW USER TO DATABASE
 	@PostMapping("/newuser")
 	public String postSignupForm(@Valid @ModelAttribute("newUser") NewUserForm newuser, BindingResult br) {
 		

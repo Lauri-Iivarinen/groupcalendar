@@ -16,18 +16,19 @@ public class IndexController {
 
 	@Autowired
 	private UserRepository userRepo;
-	
 	@Autowired 
 	private GroupRepository groupRepo;
-	
 	@Autowired 
 	private EventRepository eventRepo;
 
+	//INDEX PAGE
 	@GetMapping("/")
 	public String index() {
 		return "index";
 	}
 	
+	//LISTS GROUPS AND USERS 
+	//TODO REMOVE UPON LAUNCH
 	@GetMapping("/list")
 	public String listUsersAndGroups(Model model) {
 		model.addAttribute("users",userRepo.findAll());
@@ -35,6 +36,7 @@ public class IndexController {
 		return "listUsersAndGroups";
 	}
 	
+	//HOMEPAGE FOR LOGGED IN USER
 	@PreAuthorize("hasAuthority('USER')")
 	@GetMapping("/home")
 	public String getDefaultHomepage() {
