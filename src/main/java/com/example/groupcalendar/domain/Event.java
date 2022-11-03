@@ -13,6 +13,9 @@ import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+
+//EVENT IS A THING THAT HAPPENS FOR A GROUP
+//FOR EXAMPLE BIRTHDAY OR A PARTY
 @Entity(name="events")
 public class Event {
 	

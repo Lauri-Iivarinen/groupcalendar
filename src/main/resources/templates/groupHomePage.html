@@ -3,7 +3,7 @@
 <head>
 <!-- 
 
-INDEX PAGE FOR COMPLETELY NEW USERS
+HOMEPAGE FOR A CERTAIN GROUP
 
  -->
     <title>Group calendar</title>
@@ -16,10 +16,20 @@ INDEX PAGE FOR COMPLETELY NEW USERS
 	</form>
 	<style>.logout{padding-top: 1%; padding-right: 1%; float: right;}</style>
 	<h1>Group calendar</h1>
-	<p>WORK IN PROGRESS :)</p>
-	<div>
-	<a href="/login">Login</a>
-	<a href="/signup">Create new account</a>
+	<div th:object="${group}" action="#">
+		<h3 th:text="${group.groupName}"></h3>
+		<h4>Members:</h4>
+		<table>
+			<tr><th>First name</th><th>Last name</th><th>Username</th></tr>
+			<tr th:each="member : ${group.members}">
+				<td th:text="${member.firstName}"></td>
+				<td th:text="${member.lastName}"></td>
+				<td th:text="${member.username}"></td>
+			</tr>
+		</table>
+		
+		<a th:href="@{/{id}/applicants (id=${group.groupId})}">Applicants</a>
+		
 	</div>
 </body>
 </html>

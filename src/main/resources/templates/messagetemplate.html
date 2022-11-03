@@ -3,7 +3,7 @@
 <head>
 <!-- 
 
-INDEX PAGE FOR COMPLETELY NEW USERS
+TEMPLATE FOR FAILED USER INTERACTION
 
  -->
     <title>Group calendar</title>
@@ -15,11 +15,7 @@ INDEX PAGE FOR COMPLETELY NEW USERS
 		<input type="submit" value="logout"/>
 	</form>
 	<style>.logout{padding-top: 1%; padding-right: 1%; float: right;}</style>
-	<h1>Group calendar</h1>
-	<p>WORK IN PROGRESS :)</p>
-	<div>
-	<a href="/login">Login</a>
-	<a href="/signup">Create new account</a>
-	</div>
+	
+	<p th:text="${message}"></p>
 </body>
 </html>

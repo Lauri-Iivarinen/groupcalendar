@@ -9,6 +9,7 @@ import javax.validation.constraints.Size;
     @Size(min=5, max=30)
  */
 
+//FORM FOR VALIDATING USER INPUT UPON CREATING NEW ACCOUNT
 public class NewUserForm {
 
 	@NotEmpty

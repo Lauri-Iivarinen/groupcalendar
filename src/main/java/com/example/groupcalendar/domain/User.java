@@ -12,6 +12,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
 
+//ALL USERS DEFAULT ROLE IS "USER" USED FOR VALIDATING ACTIONS INSIDE GROUP OR AUTHENTICATION
 @Entity(name="users")
 public class User {
 

@@ -11,6 +11,7 @@ import com.example.groupcalendar.domain.User;
 import com.example.groupcalendar.domain.UserRepository;
 
 
+//SPRING MAGIC FOR CHECKING USER AUTHENTICATION
 @Service
 public class UserDetailServiceImpl implements UserDetailsService{
 

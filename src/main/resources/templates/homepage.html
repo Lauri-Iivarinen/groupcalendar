@@ -3,7 +3,7 @@
 <head>
 <!-- 
 
-INDEX PAGE FOR COMPLETELY NEW USERS
+USERS PERSONAL HOMEPAGE
 
  -->
     <title>Group calendar</title>
@@ -16,10 +16,8 @@ INDEX PAGE FOR COMPLETELY NEW USERS
 	</form>
 	<style>.logout{padding-top: 1%; padding-right: 1%; float: right;}</style>
 	<h1>Group calendar</h1>
-	<p>WORK IN PROGRESS :)</p>
-	<div>
-	<a href="/login">Login</a>
-	<a href="/signup">Create new account</a>
-	</div>
+	<h3 th:inline="text">Welcome [[${#httpServletRequest.remoteUser}]]</h3>
+	
+	<a href="/grouplist">Browse groups</a>
 </body>
 </html>

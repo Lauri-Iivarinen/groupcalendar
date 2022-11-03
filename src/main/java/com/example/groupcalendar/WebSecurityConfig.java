@@ -20,7 +20,8 @@ public class WebSecurityConfig {
     private UserDetailsService userDetailsService;	
 	
 	
-	//Filterit jolla määritellään pääsy eri tapahtumiin
+	//H2 CONSOLE IS ALLOWED WITHOUT LGGING IN FOR EASIER TESTING
+	//INDEX PAGE,SIGNING UP IS ALLOWED WITHUT AUTHENTICATION
 	@Bean
 	public SecurityFilterChain configure(HttpSecurity http) throws Exception{
 		http
@@ -36,7 +37,7 @@ public class WebSecurityConfig {
 				.and()
 			.formLogin()
 				.loginPage("/login")
-				.defaultSuccessUrl("/list", true)
+				.defaultSuccessUrl("/home", true)
 		          .permitAll()
 		          .and()
 		      .logout()

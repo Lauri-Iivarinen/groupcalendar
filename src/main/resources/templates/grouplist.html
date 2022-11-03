@@ -3,7 +3,7 @@
 <head>
 <!-- 
 
-INDEX PAGE FOR COMPLETELY NEW USERS
+LISTS ALL GROUPS THAT EXIST AND ALLOWS AUTHENTICATED USERS TO APPLY FOR THEM
 
  -->
     <title>Group calendar</title>
@@ -16,10 +16,26 @@ INDEX PAGE FOR COMPLETELY NEW USERS
 	</form>
 	<style>.logout{padding-top: 1%; padding-right: 1%; float: right;}</style>
 	<h1>Group calendar</h1>
-	<p>WORK IN PROGRESS :)</p>
-	<div>
-	<a href="/login">Login</a>
-	<a href="/signup">Create new account</a>
-	</div>
+	<br />
+	
+	<br>
+	<h3>Groups:</h3>
+	<table class="list">
+		<tr th:each="group: ${groups}">
+			<td th:text="${group.groupName}"></td>
+			<td><a th:href="@{/apply/{id} (id=${group.groupId})}">Apply</a></td>
+		</tr>
+	</table>
+	
+	<style>
+	.list{
+	background-color: black;
+	}
+	td,th{
+	background-color: white;
+	padding: 5px;
+	}
+	
+	</style>
 </body>
 </html>

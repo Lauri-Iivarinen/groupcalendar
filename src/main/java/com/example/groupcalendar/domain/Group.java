@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
+//A SIGNLE GROUOP THAT CONTAINS MEMBERS WHO CAN INTERACTI WITH EACH OTHER TROUGH EVENT CALENDAR
 @Entity(name="groups")
 public class Group {
 	
