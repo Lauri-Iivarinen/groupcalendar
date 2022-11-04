@@ -25,7 +25,12 @@ HOMEPAGE FOR A CERTAIN GROUP
 				<td th:text="${member.firstName}"></td>
 				<td th:text="${member.lastName}"></td>
 				<td th:text="${member.username}"></td>
-				<td th:if="${owner}"><a th:href="@{/removemember/{groupId}/{id} (id=${member.id},groupId=${group.groupId})}">Remove member</a></td>
+				<td th:if="${owner}">
+					<span th:if="${member.id == group.owner}">owner</span>
+		   			<span th:unless="${member.id == group.owner}">
+		   				<a th:href="@{/removemember/{groupId}/{id} (id=${member.id},groupId=${group.groupId})}">Remove member</a>
+		   			</span>
+				</td>
 			</tr>
 		</table>
 		
@@ -34,7 +39,7 @@ HOMEPAGE FOR A CERTAIN GROUP
 	
 	
 	<div th:if="${owner}">
-	<p>You are owner</p>
+	<p>Group owner settings:</p>
 	<a th:href="@{/deletegroup/{id} (id=${group.groupId})}">Delete group</a>
 	</div>
 	
