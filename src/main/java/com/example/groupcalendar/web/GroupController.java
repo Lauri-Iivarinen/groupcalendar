@@ -47,7 +47,7 @@ public class GroupController {
 	//ENDPOINT FOR USERS THAT POKE THEIR NOSE IN WRONG BUSINESS
 	@GetMapping("/notingroup")
 	public String notInGroup(Model model) {
-		model.addAttribute("message","NOT PART OF THE GROUP");
+		model.addAttribute("message","NO AUTHORITY TO DO SUCH ACTION");
 		return "messagetemplate";
 	}
 	
