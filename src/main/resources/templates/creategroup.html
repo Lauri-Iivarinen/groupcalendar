@@ -3,7 +3,7 @@
 <head>
 <!-- 
 
-USERS PERSONAL HOMEPAGE
+TEMPLATE FOR FAILED USER INTERACTION
 
  -->
     <title>Group calendar</title>
@@ -15,25 +15,16 @@ USERS PERSONAL HOMEPAGE
 		<input type="submit" value="logout"/>
 	</form>
 	<style>.logout{padding-top: 1%; padding-right: 1%; float: right;}</style>
-	<h1>Group calendar</h1>
-	<h3 th:inline="text">Welcome [[${#httpServletRequest.remoteUser}]]</h3>
 	
-	<div th:object="${user}"><!-- USER RELATED INFO HERE -->
-	
-	<p></p>
-	<a href="/grouplist">Find new groups</a>
-	<br>
+	<h3>Create new group</h3>
+	<div>
+		<form th:object="${group}" th:action="@{/creategroup}" action="#" method="post">
+			<label>Name for the group:</label><input th:field="*{groupName}"/>
+			<p th:if="${#fields.hasErrors('groupName')}" th:errors="*{groupName}">error</p>
+			<input type="hidden" th:field="*{owner}" />
+			<input type="submit" value="CREATE" />
+		
+		</form>
 	</div>
-	<h3>Groups</h3>
-	<a href="/creategroup">Create new group</a><br /><br>
-	<table th:object="${groups}">
-		<tr><th>Name</th></tr>
-		<tr th:each="group : ${groups}">
-			<td th:text="${group.groupName}"></td>
-			<td><a th:href="@{/grouphome/{id} (id=${group.groupId})}">SELECT</a></td>
-		</tr>
-	</table>
-	
-
 </body>
 </html>

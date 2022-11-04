@@ -116,12 +116,6 @@ public class User {
 		this.role = role;
 	}
 
-	@Override
-	public String toString() {
-		return "User [id=" + id + ", username=" + username + ", pwHash=" + pwHash + ", firstName=" + firstName
-				+ ", lastName=" + lastName + ", role=" + role + "]";
-	}
-
 	public List<Group> getGroups() {
 		return groups;
 	}
@@ -130,5 +124,13 @@ public class User {
 		this.groups = groups;
 	}
 
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", username=" + username + ", pwHash=" + pwHash + ", firstName=" + firstName
+				+ ", lastName=" + lastName + ", groups=" + groups + ", applicationList=" + applicationList + ", role="
+				+ role + "]";
+	}
+
+	
 	
 }

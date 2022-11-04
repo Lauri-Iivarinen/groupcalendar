@@ -6,5 +6,5 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface GroupRepository extends CrudRepository<Group, Long>{
 
-	List<Group> findByGroupName(String name);
+	Group findByGroupName(String name);
 }

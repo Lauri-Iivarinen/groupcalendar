@@ -1,13 +1,19 @@
 package com.example.groupcalendar.web;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.example.groupcalendar.domain.EventRepository;
+import com.example.groupcalendar.domain.Group;
 import com.example.groupcalendar.domain.GroupRepository;
+import com.example.groupcalendar.domain.User;
 import com.example.groupcalendar.domain.UserRepository;
 
 //CONTROLLER HANDLING BASIC REQUEST THAT ARE NOT REALTED TO GROUPS OR EVENTS
@@ -28,7 +34,7 @@ public class IndexController {
 	}
 	
 	//LISTS GROUPS AND USERS 
-	//TODO REMOVE UPON LAUNCH
+	//TODO REMOVE UPON LAUNCH or restrict to admin
 	@GetMapping("/list")
 	public String listUsersAndGroups(Model model) {
 		model.addAttribute("users",userRepo.findAll());
@@ -39,7 +45,18 @@ public class IndexController {
 	//HOMEPAGE FOR LOGGED IN USER
 	@PreAuthorize("hasAuthority('USER')")
 	@GetMapping("/home")
-	public String getDefaultHomepage() {
+	public String getDefaultHomepage(Model model,Authentication auth) {
+		User user = userRepo.findByUsername(auth.getName());
+		
+		List<Group> groups = (List<Group>) groupRepo.findAll();
+		List<Group> usersGroups = new ArrayList<>();
+		
+		for (Group group:groups) {
+			if (group.getMembers().contains(user)) usersGroups.add(group);
+		}
+
+		model.addAttribute("groups",usersGroups);
+		model.addAttribute("user",user);
 		return "homepage";
 	}
 }

@@ -1,5 +1,6 @@
 package com.example.groupcalendar.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -40,7 +41,9 @@ public class Group {
 	//---------------------------------------------
 	
 	public Group() {
-
+		this.members = new ArrayList<>();
+		this.applicants = new ArrayList<>();
+		this.events = new ArrayList<>();
 	}
 
 	public Group(String groupName, Long owner, List<User> members) {
@@ -111,6 +114,14 @@ public class Group {
 
 	public void setOwner(Long owner) {
 		this.owner = owner;
+	}
+	
+	public void addMember(User user) {
+		this.members.add(user);
+	}
+	
+	public void clearApplicant(User user) {
+		this.applicants.remove(user);
 	}
 	
 	
