@@ -10,6 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import com.example.groupcalendar.domain.Event;
+import com.example.groupcalendar.domain.EventDisplay;
 import com.example.groupcalendar.domain.EventRepository;
 import com.example.groupcalendar.domain.Group;
 import com.example.groupcalendar.domain.GroupRepository;
@@ -50,11 +52,19 @@ public class IndexController {
 		
 		List<Group> groups = (List<Group>) groupRepo.findAll();
 		List<Group> usersGroups = new ArrayList<>();
+		List<Event> events = new ArrayList<>();
+		List <EventDisplay> display = new ArrayList<>();
 		
 		for (Group group:groups) {
 			if (group.getMembers().contains(user)) usersGroups.add(group);
+			events.addAll(group.getEvents());
+		}
+		//IF USER IS PARTICIPATING IN AN EVENT IT IS ADDED FOR DISPLAY
+		for (Event event: events) {
+			if (event.getParticipants().contains(user))  display.add(new EventDisplay(event));
 		}
 
+		model.addAttribute("events", display);
 		model.addAttribute("groups",usersGroups);
 		model.addAttribute("user",user);
 		return "homepage";

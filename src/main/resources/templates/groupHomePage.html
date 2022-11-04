@@ -36,7 +36,30 @@ HOMEPAGE FOR A CERTAIN GROUP
 		
 		<a th:href="@{/{id}/applicants (id=${group.groupId})}">Applicants</a>
 		
-	
+		<div>
+		<p>Upcoming events</p>
+		
+		<table>
+		<tr><th>Event</th><th>Location</th><th>Date</th><th>Organizer</th><th>Participants</th><th>Participating</th></tr>
+		<tr th:each="display : ${events}">
+			<td th:text="${display.event.title}"></td>
+			<td th:text="${display.event.location}"></td>
+			<td th:text="${display.event.date}"></td>
+			<td th:text="${display.event.organizerName}"></td>
+			<td th:text="${display.participating}"></td>
+			<td>
+				<span th:if="${display.userParticipating}" class="green">Yes</span>
+				<span th:unless="${display.userParticipating}" class="red">No</span>
+			</td>
+			<td>
+				<span th:if="${display.userParticipating}" class="green"><a th:href="@{/participationstatus/{eventId}/{action} (eventId=${display.event.eventId},action=0)}">Cancel</a></span>
+				<span th:unless="${display.userParticipating}" class="red"><a th:href="@{/participationstatus/{eventId}/{action} (eventId=${display.event.eventId},action=0)}">Participate</a></span>
+			</td>
+		</tr>
+		</table>
+		
+		<a th:href="@{/newevent/{id} (id=${group.groupId})}">Create new event</a>
+		</div>
 	
 	<div th:if="${owner}">
 	<p>Group owner settings:</p>
@@ -44,5 +67,17 @@ HOMEPAGE FOR A CERTAIN GROUP
 	</div>
 	
 	</div>
+	
+	<style>
+	
+	.red{
+		color: red;
+	}
+	
+	.green{
+		color: green;
+	}
+	
+	</style>
 </body>
 </html>

@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+
+    <title>Group calendar</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link type="text/css" rel="stylesheet" href="/css/bootstrap.css" th:href="@{/css/bootstrap.css}" />
+</head>
+<body>
+	<form class="logout" th:action="@{/logout}" method="post">
+		<input type="submit" value="logout"/>
+	</form>
+	<style>.logout{padding-top: 1%; padding-right: 1%; float: right;}</style>
+	
+	<h3>Create new event</h3>
+	<div>
+		<form th:object="${event}" th:action="@{/newevent}" action="#" method="post">
+			<div><label>Event title: </label><input th:field="*{title}"/></div>
+			<div><label>Location: </label><input th:field="*{location}"/></div>
+			<div><label>When is the event happening: </label><input th:field="*{date}"/></div>
+			<input type="hidden" th:field="*{organizerName}"/>
+			<input type="hidden" th:field="*{group.groupId}" />
+			<input type="submit" value="CREATE" />
+		
+		</form>
+	</div>
+</body>
+</html>

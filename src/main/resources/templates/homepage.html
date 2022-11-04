@@ -26,7 +26,7 @@ USERS PERSONAL HOMEPAGE
 
 	<h3>Groups</h3>
 	<a href="/creategroup">Create new group</a><br /><br>
-	<table th:object="${groups}">
+	<table >
 		<tr><th>Name</th><th>Homepage</th><th>action</th></tr>
 		<tr th:each="group : ${groups}">
 			<td th:text="${group.groupName}"></td>
@@ -39,6 +39,21 @@ USERS PERSONAL HOMEPAGE
 			</td>
 		</tr>
 	</table>
+	
+	<div>
+	<h3>Your upcoming events:</h3>
+	<table>
+	<tr><th>Event</th><th>Group</th><th>Date</th><th>Location</th><th>Participants</th></tr>
+	<tr th:each="event : ${events}">
+		<td th:text="${event.event.title}"></td>
+		<td th:text="${event.event.group.groupName}"></td>
+		<td th:text="${event.event.date}"></td>
+		<td th:text="${event.event.location}"></td>
+		<td th:text="${event.participating}"></td>
+		<td><a th:href="@{/participationstatus/{eventId}/{action} (eventId=${event.event.eventId},action=1)}">Cancel participation</a></td>
+	</tr>
+	</table>
+	</div>
 	
 	</div>
 </body>

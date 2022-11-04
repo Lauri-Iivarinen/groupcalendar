@@ -1,5 +1,6 @@
 package com.example.groupcalendar.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -25,7 +26,11 @@ public class Event {
 	
 	private String title;
 	private String location;
+	
+	@Column(name="eventDate")
 	private String date;
+	
+	private String organizerName;
 	
 	@OneToMany
 	@Column(nullable=true)
@@ -41,6 +46,7 @@ public class Event {
 	//----------------------------
 	
 	public Event() {
+		this.participants = new ArrayList<>();
 
 	}
 
@@ -134,6 +140,27 @@ public class Event {
 		return "Event [eventId=" + eventId + ", title=" + title + ", location=" + location + ", date=" + date
 				+ ", participants=" + participants + ", group=" + group + "]";
 	}
+
+
+	//ORGANIZER GETTER + SETTER
+	public String getOrganizerName() {
+		return organizerName;
+	}
+	public void setOrganizerName(String organizerName) {
+		this.organizerName = organizerName;
+	}
+
+
+
+	//ADD A NEW PARTICIPANT
+	public void addParticipant(User user) {
+		this.participants.add(user);
+	}
+	
+	public void removeParticipant(User user) {
+		this.participants.remove(user);
+	}
+
 	
 	
 

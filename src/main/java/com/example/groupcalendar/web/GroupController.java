@@ -1,5 +1,6 @@
 package com.example.groupcalendar.web;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -16,6 +17,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.example.groupcalendar.domain.ConfirmDeleteForm;
+import com.example.groupcalendar.domain.Event;
+import com.example.groupcalendar.domain.EventDisplay;
 import com.example.groupcalendar.domain.EventRepository;
 import com.example.groupcalendar.domain.Group;
 import com.example.groupcalendar.domain.GroupRepository;
@@ -106,8 +109,18 @@ public class GroupController {
 		//CHECKS FOR INVALID GROUP MEMBER
 		if(!validMember(user,group)) return "redirect:/notingroup";
 		
+		//CREATE DISPLAY FOR EVENTS
+		List<EventDisplay> events = new ArrayList<>();
+		
+		for (Event event: group.getEvents()) {
+			EventDisplay display = new EventDisplay(event);
+			if (event.getParticipants().contains(user)) display.setUserParticipating(true);
+			events.add(display);
+		}
+		
 		model.addAttribute("owner", owner);
 		model.addAttribute("group",group);
+		model.addAttribute("events", events);
 		return "groupHomePage";
 		
 	}
