@@ -77,7 +77,7 @@ public class GroupcalendarApplication {
 			//--------------EVENTS------------
 			List<User> attendants = new ArrayList<User>();
 			
-			eventRepo.save(new Event("bday","mcdonalds","2.2.2022",attendants,group1));
+			//eventRepo.save(new Event("bday","mcdonalds","2.2.2022",attendants,group1));
 			
 			//--------------GROUP APPLICANTS------------
 			List<User> applicants = new ArrayList<User>();

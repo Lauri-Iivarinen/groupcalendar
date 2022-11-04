@@ -9,8 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -24,15 +24,19 @@ public class Event {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long eventId;
 	
+	@Column(nullable=true)
 	private String title;
+	
+	@Column(nullable=true)
 	private String location;
 	
 	@Column(name="eventDate")
 	private String date;
 	
+	@Column(nullable=true)
 	private String organizerName;
 	
-	@OneToMany
+	@ManyToMany
 	@Column(nullable=true)
 	private List<User> participants;
 	
