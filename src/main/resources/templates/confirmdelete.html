@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<!-- 
+
+TEMPLATE FOR FAILED USER INTERACTION
+
+ -->
+    <title>Group calendar</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link type="text/css" rel="stylesheet" href="/css/bootstrap.css" th:href="@{/css/bootstrap.css}" />
+</head>
+<body>
+	<div th:object="${group}">
+	<p>Are you sure you want to delete group: <label class="red" th:text="${group.groupName}"></label></p>
+	</div>
+	<form th:object="${group}" th:action="@{/confirmdelete}" action="#" method="post">
+		<div><p>Confirm deletion by typing group name</p><input th:field="*{confirmGroupName}" /></div><br>
+		<input type="hidden" th:field="*{groupId}"/>
+		<input type="hidden" th:field="*{groupName}"/>
+		<div>
+		<input type="submit" value="confirm"/>
+		</div>
+	</form>
+	<p class="red" th:text="${message}"></p>
+	
+	<style>
+	.red{
+		color: red;
+	}
+	</style>
+</body>
+</html>

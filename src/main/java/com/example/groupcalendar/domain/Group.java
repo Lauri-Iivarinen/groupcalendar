@@ -12,7 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
-//A SIGNLE GROUOP THAT CONTAINS MEMBERS WHO CAN INTERACTI WITH EACH OTHER TROUGH EVENT CALENDAR
+//A SIGNLE GROUP THAT CONTAINS MEMBERS WHO CAN INTERACTI WITH EACH OTHER TROUGH EVENT CALENDAR
 @Entity(name="groups")
 public class Group {
 	
@@ -116,10 +116,17 @@ public class Group {
 		this.owner = owner;
 	}
 	
+	//adds one new member to group
 	public void addMember(User user) {
 		this.members.add(user);
 	}
 	
+	//removes member from group
+	public void removeMember(User user) {
+		this.members.remove(user);
+	}
+	
+	//removes applicant from group
 	public void clearApplicant(User user) {
 		this.applicants.remove(user);
 	}

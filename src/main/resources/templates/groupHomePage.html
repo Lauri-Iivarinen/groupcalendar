@@ -25,11 +25,19 @@ HOMEPAGE FOR A CERTAIN GROUP
 				<td th:text="${member.firstName}"></td>
 				<td th:text="${member.lastName}"></td>
 				<td th:text="${member.username}"></td>
+				<td th:if="${owner}"><a th:href="@{/removemember/{groupId}/{id} (id=${member.id},groupId=${group.groupId})}">Remove member</a></td>
 			</tr>
 		</table>
 		
 		<a th:href="@{/{id}/applicants (id=${group.groupId})}">Applicants</a>
 		
+	
+	
+	<div th:if="${owner}">
+	<p>You are owner</p>
+	<a th:href="@{/deletegroup/{id} (id=${group.groupId})}">Delete group</a>
+	</div>
+	
 	</div>
 </body>
 </html>

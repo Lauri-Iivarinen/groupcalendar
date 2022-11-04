@@ -1,6 +1,5 @@
 package com.example.groupcalendar.web;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -16,6 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.example.groupcalendar.domain.ConfirmDeleteForm;
 import com.example.groupcalendar.domain.EventRepository;
 import com.example.groupcalendar.domain.Group;
 import com.example.groupcalendar.domain.GroupRepository;
@@ -93,15 +93,20 @@ public class GroupController {
 	
 	//Homepage for a group
 	//CHECK VALID USER
+	//TODO check for owner status for deleting group or removing members
 	@GetMapping("/grouphome/{id}")
 	public String groupHomePage(@PathVariable("id") Long id,Model model,Authentication auth) {
 		
 		Group group = groupRepo.findById(id).get();
 		User user = userRepo.findByUsername(auth.getName());
 		
+		boolean owner = false;
+		if(group.getOwner()==user.getId()) owner = true;
+		
 		//CHECKS FOR INVALID GROUP MEMBER
 		if(!validMember(user,group)) return "redirect:/notingroup";
 		
+		model.addAttribute("owner", owner);
 		model.addAttribute("group",group);
 		return "groupHomePage";
 		
@@ -121,7 +126,6 @@ public class GroupController {
 	}
 	
 	//INVITES APPLICANT TO GROUP
-
 	@GetMapping("{groupId}/invite/{applicantId}")
 	public String inviteApplicant(@PathVariable("groupId") Long groupId,@PathVariable("applicantId") Long applicantId,Model model,Authentication auth) {
 		Group group = groupRepo.findById(groupId).get();
@@ -152,6 +156,7 @@ public class GroupController {
 		return "creategroup";
 	}
 	
+	//EXECUTES NEW GROUPS CREATION AND SAVES TO DB
 	@PostMapping("/creategroup")
 	public String postCreateGroup(@Valid @ModelAttribute("group") NewGroupForm group,BindingResult br,Authentication auth) {
 		//general errors
@@ -174,6 +179,80 @@ public class GroupController {
 		//RETURN TO GROUPS NEW HOMEPAGE
 		return "redirect:/grouphome/" + newgroup.getGroupId();
 
+	}
+	
+	//USER LEAVES GROUP
+	@GetMapping("/leavegroup/{id}")
+	public String leaveGroup(@PathVariable("id") Long id,Authentication auth) {
+		
+		Group group = groupRepo.findById(id).get();
+		User user = userRepo.findByUsername(auth.getName());
+		
+		//CHECKS FOR INVALID GROUP MEMBER
+		if(!validMember(user,group)) return "redirect:/notingroup";
+		
+		group.removeMember(user);
+		groupRepo.save(group);
+		
+		return "redirect:/home";
+	}
+	
+	//USER IS FORCED TO LEAVE GROUP BY OWNER
+	@GetMapping("/removemember/{groupId}/{memberId}")
+	public String removeMember(@PathVariable("groupId") Long groupId,@PathVariable("memberId") Long memberId,Authentication auth) {
+		
+		Group group = groupRepo.findById(groupId).get();
+		User user = userRepo.findByUsername(auth.getName());
+		
+		//CHECKS FOR AUTHORITY
+		if(group.getOwner()!=user.getId()) return "redirect:/notingroup";
+		
+		//Remove member
+		group.removeMember(userRepo.findById(memberId).get());
+		groupRepo.save(group);
+		
+		return "redirect:/grouphome/" + group.getGroupId();
+	}
+	
+	//DELETING GROUP, ASKING FOR --CONFIRMATION--
+	@GetMapping("/deletegroup/{id}")
+	public String deleteGroup(@PathVariable("id") Long id,Authentication auth,Model model) {
+		
+		Group group = groupRepo.findById(id).get();
+		User user = userRepo.findByUsername(auth.getName());
+		
+		
+		//CHECKS FOR AUTHORITY
+		if(group.getOwner()!=user.getId()) return "redirect:/notingroup";
+		
+		ConfirmDeleteForm deletion = new ConfirmDeleteForm();
+		
+		deletion.setGroupName(group.getGroupName());
+		deletion.setGroupId(id);
+
+		model.addAttribute("group",deletion);
+		
+		return "confirmdelete";
+	}
+	
+	//CONFIRMS DELETION AND DELETES GROUP FROM DB
+	@PostMapping("/confirmdelete")
+	public String confirmGroupDeletion(@ModelAttribute("group") ConfirmDeleteForm deletion,Authentication auth,Model model) {
+		
+		Group group = groupRepo.findById(deletion.getGroupId()).get();
+		User user = userRepo.findByUsername(auth.getName());
+		
+		//CHECKS FOR AUTHORITY
+		if(group.getOwner()!=user.getId()) return "redirect:/notingroup";
+		
+		//matching names
+		if(!deletion.getGroupName().equals(deletion.getConfirmGroupName())) {
+			model.addAttribute("message", "Wrong group name");
+			return "confirmdelete";
+		}
+
+		groupRepo.delete(group);
+		return "redirect:/home";
 	}
 	
 }
