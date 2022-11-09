@@ -27,7 +27,7 @@ public class GroupcalendarApplication {
 		SpringApplication.run(GroupcalendarApplication.class, args);
 	}
 
-	/*
+	
 	//kommentoitu poist kun postgre käytössä
 	@Bean
 	public CommandLineRunner launchTestBook (UserRepository userRepo, GroupRepository groupRepo, EventRepository eventRepo) {
