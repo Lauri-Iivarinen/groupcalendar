@@ -1,0 +1,61 @@
+.logout{padding-top: 1%; padding-right: 1%; float: right;}
+.red{color: red;}
+.green{color: green;}
+
+body{
+	background-color: rgb(250,250,250);
+	font-family: 'Signika', sans-serif;
+}
+
+.formOut{
+	margin-top: 50px;
+	margin-left: 50px;
+	padding: 20px;
+	background-color: rgb(230,230,255);
+	width: 300px;
+	border-radius: 15px;
+}
+	
+.form{
+	padding: 5px;
+	margin-top: 10px;
+	border-style: solid;
+	border-color: rgb(100,100,250);
+	width: 200px;
+	background-color: rgb(255,255,255);
+}
+	
+.label{
+	margin-right: 5px;
+}
+
+.list{
+	background-color: black;
+}
+
+td{
+	background-color: white;
+	padding: 5px;
+}
+th{
+	background-color: rgb(230,230,255);
+	padding: 5px;
+}
+
+
+.link:link, .link:visited{
+	border-style: solid;
+	border-radius: 5px;
+	padding: 2px;
+	padding-left: 4px;
+	padding-right: 4px;
+	border-color: rgb(50,50,250);
+	color: rgb(0,0,0);
+}
+.link:hover{
+	background-color: rgb(150,150,255);
+}
+
+.tableLink:link, .tableLink:visited{
+	color: black;
+}

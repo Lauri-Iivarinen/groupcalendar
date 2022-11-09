@@ -8,61 +8,37 @@ FORM FOR CREATING ACCOUNT
  -->
     <title>Group calendar</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link type="text/css" rel="stylesheet" href="/css/bootstrap.css" th:href="@{/css/bootstrap.css}" />
+    <link th:href="@{/styles/styles.css}" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Signika&display=swap" rel="stylesheet">
 </head>
 <body>
-	<form th:object="${newUser}" th:action="@{newuser}" action="#" method="post">
+	<form class="formOut" th:object="${newUser}" th:action="@{newuser}" action="#" method="post">
 	<h1>Create new account:</h1>
 		<div class="form">
 			<label class="label">First name:</label><input th:field="*{firstName}"/>
-			<p th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">error</p>
+			<p class="red" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">error</p>
 		</div>
 		<div class="form">
 			<label class="label">Last name:</label><input th:field="*{lastName}"/>
-			<p th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">error</p>
+			<p class="red" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">error</p>
 		</div>
 		<div class="form">
 			<label class="label">Username:</label><input th:field="*{username}"/>
-			<p th:if="${#fields.hasErrors('username')}" th:errors="*{username}">error</p>	
+			<p class="red" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">error</p>	
 		</div>
 		<div class="form">
 			<label class="label">Password:</label><input type="password" th:field="*{password}"/>
-			<p th:if="${#fields.hasErrors('password')}" th:errors="*{password}">error</p>	
+			<p class="red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">error</p>	
 		</div>
 		<div class="form">
 			<label class="label">Repeat password:</label><input type="password" th:field="*{passwordCheck}"/>
-			<p th:if="${#fields.hasErrors('passwordCheck')}" th:errors="*{passwordCheck}">error</p>	
+			<p class="red" th:if="${#fields.hasErrors('passwordCheck')}" th:errors="*{passwordCheck}">error</p>	
 		</div><br />
 		<div>
 			<input type="submit" value="Signup"/>
 		</div>
 	</form>
-	<style>
-	
-	form{
-	margin-top: 50px;
-	margin-left: 50px;
-	padding: 20px;
-	background-color: rgb(230,230,255);
-	width: 300px;
-	border-radius: 15px;
-	}
-	
-	.form{
-		padding: 5px;
-		margin-top: 10px;
-		border-style: solid;
-		width: 200px;
-		background-color: rgb(255,255,255);
-	}
-	
-	.label{
-		margin-right: 5px;
-	}
-	p{
-	color: red;
-	}
-	
-	</style>
 </body>
 </html>

@@ -8,18 +8,20 @@ INDEX PAGE FOR COMPLETELY NEW USERS
  -->
     <title>Group calendar</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link type="text/css" rel="stylesheet" href="/css/bootstrap.css" th:href="@{/css/bootstrap.css}" />
+    <link th:href="@{/styles/styles.css}" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Signika&display=swap" rel="stylesheet">
 </head>
 <body>
 	<form class="logout" th:action="@{/logout}" method="post">
 		<input type="submit" value="logout"/>
 	</form>
-	<style>.logout{padding-top: 1%; padding-right: 1%; float: right;}</style>
 	<h1>Group calendar</h1>
 	<p>WORK IN PROGRESS :)</p>
 	<div>
-	<a href="/login">Login</a>
-	<a href="/signup">Create new account</a>
+	<a class="link" href="/login">Login</a>
+	<a class="link" href="/signup">Create new account</a>
 	</div>
 </body>
 </html>

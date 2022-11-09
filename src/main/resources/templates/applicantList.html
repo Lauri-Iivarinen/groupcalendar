@@ -8,23 +8,25 @@ LISTS ALL APPLICANTS FOR A CERTAIN GROUP
  -->
     <title>Group calendar</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link type="text/css" rel="stylesheet" href="/css/bootstrap.css" th:href="@{/css/bootstrap.css}" />
+    <link th:href="@{/styles/styles.css}" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Signika&display=swap" rel="stylesheet">
 </head>
 <body>
 	<form class="logout" th:action="@{/logout}" method="post">
 		<input type="submit" value="logout"/>
 	</form>
-	<style>.logout{padding-top: 1%; padding-right: 1%; float: right;}</style>
 	<h1>Group calendar</h1>
 	<div >
 		<h4>Applicants:</h4>
-		<table>
-			<tr><th>First name</th><th>Last name</th><th>Username</th></tr>
+		<table class="list">
+			<tr><th>First name</th><th>Last name</th><th>Username</th><th></th></tr>
 			<tr th:each="applicant : ${applicants}">
 				<td th:text="${applicant.firstName}"></td>
 				<td th:text="${applicant.lastName}"></td>
 				<td th:text="${applicant.username}"></td>
-				<td><a th:href="@{invite/{id} (id=${applicant.id})}">INVITE</a></td>
+				<td><a class="tableLink" th:href="@{invite/{id} (id=${applicant.id})}">INVITE</a></td>
 			</tr>
 		</table>
 		

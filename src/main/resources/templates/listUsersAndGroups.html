@@ -9,13 +9,15 @@ LISTS ALL AIVAILABLE DATA
  -->
     <title>Group calendar</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link type="text/css" rel="stylesheet" href="/css/bootstrap.css" th:href="@{/css/bootstrap.css}" />
+    <link th:href="@{/styles/styles.css}" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Signika&display=swap" rel="stylesheet">
 </head>
 <body>
 	<form class="logout" th:action="@{/logout}" method="post">
 		<input type="submit" value="logout"/>
 	</form>
-	<style>.logout{padding-top: 1%; padding-right: 1%; float: right;}</style>
 	<h1>Group calendar</h1>
 	<br />
 	<h3>Users:</h3>
@@ -38,16 +40,5 @@ LISTS ALL AIVAILABLE DATA
 			<td th:text="${group.owner}"></td>
 		</tr>
 	</table>
-	
-	<style>
-	
-	.list{
-	background-color: black;
-	}
-	td,th{
-	background-color: white;
-	}
-	
-	</style>
 </body>
 </html>

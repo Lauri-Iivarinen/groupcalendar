@@ -8,42 +8,19 @@ LOGIN FORM
  -->
     <title>Group calendar</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link type="text/css" rel="stylesheet" href="/css/bootstrap.css" th:href="@{/css/bootstrap.css}" />
+    <link th:href="@{/styles/styles.css}" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Signika&display=swap" rel="stylesheet">
 </head>
 <body>
 	<a href="/signup">Create new account</a>
-	<form th:action="@{/login}" method="post">
+	<form class="formOut" th:action="@{/login}" method="post">
 	<h1>Login</h1>
 		<div class="form"><label class="label"> Username: </label><input type="text" name="username"/></div>
 		<div class="form"><label class="label"> Password: </label><input type="password" name="password"/></div><br />
 		<div><input type="submit" value="Login"/></div>
 	</form>
 
-	<style>
-	form{
-		margin-top: 50px;
-		margin-left: 50px;
-		padding: 20px;
-		background-color: rgb(230,230,255);
-		width: 300px;
-		border-radius: 15px;
-	}
-	
-	.form{
-		padding: 5px;
-		margin-top: 10px;
-		border-style: solid;
-		width: 200px;
-		background-color: rgb(255,255,255);
-	}
-	
-	.label{
-		margin-right: 5px;
-	}
-	
-	p{
-		color: red;
-	}
-	</style>
 </body>
 </html>

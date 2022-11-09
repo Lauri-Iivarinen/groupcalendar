@@ -27,7 +27,7 @@ public class GroupcalendarApplication {
 		SpringApplication.run(GroupcalendarApplication.class, args);
 	}
 
-	
+	/*
 	//kommentoitu poist kun postgre käytössä
 	@Bean
 	public CommandLineRunner launchTestBook (UserRepository userRepo, GroupRepository groupRepo, EventRepository eventRepo) {
@@ -36,7 +36,7 @@ public class GroupcalendarApplication {
 			
 
 			 
-			 //----TEST DATA FOR h2 DATABASE, WILL BE REMOVED ON SUCCESFULL LAUNCH--
+			//----TEST DATA FOR h2 DATABASE, WILL BE REMOVED ON SUCCESFULL LAUNCH--
 
 			//--------------USERS------------
 			//pw: kayttaja

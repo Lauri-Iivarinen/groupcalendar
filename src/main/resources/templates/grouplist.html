@@ -8,34 +8,27 @@ LISTS ALL GROUPS THAT EXIST AND ALLOWS AUTHENTICATED USERS TO APPLY FOR THEM
  -->
     <title>Group calendar</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link type="text/css" rel="stylesheet" href="/css/bootstrap.css" th:href="@{/css/bootstrap.css}" />
+    <link th:href="@{/styles/styles.css}" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Signika&display=swap" rel="stylesheet">
 </head>
 <body>
 	<form class="logout" th:action="@{/logout}" method="post">
 		<input type="submit" value="logout"/>
 	</form>
-	<style>.logout{padding-top: 1%; padding-right: 1%; float: right;}</style>
 	<h1>Group calendar</h1>
 	<br />
 	
 	<br>
 	<h3>Groups:</h3>
 	<table class="list">
+		<tr><th>Group name:</th><th>Action</th></tr>
 		<tr th:each="group: ${groups}">
 			<td th:text="${group.groupName}"></td>
-			<td><a th:href="@{/apply/{id} (id=${group.groupId})}">Apply</a></td>
+			<td><a class="tableLink" th:href="@{/apply/{id} (id=${group.groupId})}">Apply</a></td>
 		</tr>
 	</table>
 	
-	<style>
-	.list{
-	background-color: black;
-	}
-	td,th{
-	background-color: white;
-	padding: 5px;
-	}
-	
-	</style>
 </body>
 </html>

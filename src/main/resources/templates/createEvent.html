@@ -1,25 +1,28 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
-
+<!-- Creating events -->
     <title>Group calendar</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link type="text/css" rel="stylesheet" href="/css/bootstrap.css" th:href="@{/css/bootstrap.css}" />
+    <link th:href="@{/styles/styles.css}" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Signika&display=swap" rel="stylesheet">
 </head>
 <body>
 	<form class="logout" th:action="@{/logout}" method="post">
 		<input type="submit" value="logout"/>
 	</form>
-	<style>.logout{padding-top: 1%; padding-right: 1%; float: right;}</style>
 	
 	<h3>Create new event</h3>
 	<div>
-		<form th:object="${event}" th:action="@{/newevent}" action="#" method="post">
-			<div><label>Event title: </label><input th:field="*{title}"/></div>
-			<div><label>Location: </label><input th:field="*{location}"/></div>
-			<div><label>When is the event happening: </label><input th:field="*{date}"/></div>
+		<form class="formOut" th:object="${event}" th:action="@{/newevent}" action="#" method="post">
+			<div class="form"><label>Event title: </label><input th:field="*{title}"/></div>
+			<div class="form"><label>Location: </label><input th:field="*{location}"/></div>
+			<div class="form"><label>When is the event happening: </label><input th:field="*{date}"/></div>
 			<input type="hidden" th:field="*{organizerName}"/>
 			<input type="hidden" th:field="*{group.groupId}" />
+			<br />
 			<input type="submit" value="CREATE" />
 		
 		</form>

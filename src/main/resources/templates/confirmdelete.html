@@ -8,14 +8,18 @@ TEMPLATE FOR FAILED USER INTERACTION
  -->
     <title>Group calendar</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link type="text/css" rel="stylesheet" href="/css/bootstrap.css" th:href="@{/css/bootstrap.css}" />
+    <link th:href="@{/styles/styles.css}" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Signika&display=swap" rel="stylesheet">
 </head>
 <body>
 	<div th:object="${group}">
+	
+	
+	<form class="formOut" th:object="${group}" th:action="@{/confirmdelete}" action="#" method="post">
 	<p>Are you sure you want to delete group: <label class="red" th:text="${group.groupName}"></label></p>
-	</div>
-	<form th:object="${group}" th:action="@{/confirmdelete}" action="#" method="post">
-		<div><p>Confirm deletion by typing group name</p><input th:field="*{confirmGroupName}" /></div><br>
+		<div class="form"><p>Confirm deletion by typing group name</p><input th:field="*{confirmGroupName}" /></div><br>
 		<input type="hidden" th:field="*{groupId}"/>
 		<input type="hidden" th:field="*{groupName}"/>
 		<div>
@@ -23,11 +27,6 @@ TEMPLATE FOR FAILED USER INTERACTION
 		</div>
 	</form>
 	<p class="red" th:text="${message}"></p>
-	
-	<style>
-	.red{
-		color: red;
-	}
-	</style>
+	</div>
 </body>
 </html>
