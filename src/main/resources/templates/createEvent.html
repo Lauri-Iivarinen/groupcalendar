@@ -10,22 +10,43 @@
 	<link href="https://fonts.googleapis.com/css2?family=Signika&display=swap" rel="stylesheet">
 </head>
 <body>
-	<form class="logout" th:action="@{/logout}" method="post">
-		<input type="submit" value="logout"/>
-	</form>
+	<header>
+		<form class="logout" th:action="@{/logout}" method="post">
+			<input type="submit" value="LOGOUT"/>
+		</form>
+		<form class="home" th:action="@{/home}" method="post">
+			<input type="submit" value="HOME"/>
+		</form>
+	</header>
 	
-	<h3>Create new event</h3>
+	<div class="element">
+	<h1>Create new event</h1>
 	<div>
 		<form class="formOut" th:object="${event}" th:action="@{/newevent}" action="#" method="post">
-			<div class="form"><label>Event title: </label><input th:field="*{title}"/></div>
-			<div class="form"><label>Location: </label><input th:field="*{location}"/></div>
-			<div class="form"><label>When is the event happening: </label><input th:field="*{date}"/></div>
+		
+			<div class="form">
+				<label>Event title: </label><input th:field="*{title}"/>
+				<p class="red" th:if="${#fields.hasErrors('title')}" th:errors="*{title}">error</p>
+			</div>
+			
+			<div class="form">
+				<label>Location: </label><input th:field="*{location}"/>
+				<p class="red" th:if="${#fields.hasErrors('location')}" th:errors="*{location}">error</p>
+			</div>
+			
+			<div class="form">
+				<label>When is the event happening: </label><input th:field="*{date}"/>
+				<p class="red" th:if="${#fields.hasErrors('date')}" th:errors="*{date}">error</p>
+			</div>
+
+			
 			<input type="hidden" th:field="*{organizerName}"/>
 			<input type="hidden" th:field="*{group.groupId}" />
 			<br />
 			<input type="submit" value="CREATE" />
 		
 		</form>
+	</div>
 	</div>
 </body>
 </html>

@@ -26,6 +26,7 @@ public class GroupcalendarApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(GroupcalendarApplication.class, args);
 	}
+	
 
 	/*
 	//kommentoitu poist kun postgre käytössä
@@ -46,6 +47,7 @@ public class GroupcalendarApplication {
 			//pw: valvoja
 			User admin = new User("admin", "$2a$10$KIsRwUl8JmJyj9iY8az5MOBEsO1cSZ.FuRaF1FHH6lVMN0Lh/ldzu", "Matti", "Marsu", "ADMIN");
 			userRepo.save(admin);
+			
 			
 			//pw: kissa
 			User kissa = new User("cat","$2a$10$SgS1pO0KbVjPrYO5RLrNJuPx1.4yzzKnMTr3JZM42Zdn8JY0fRQEW","cat","katten","USER");

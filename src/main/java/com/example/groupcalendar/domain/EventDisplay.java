@@ -1,9 +1,12 @@
 package com.example.groupcalendar.domain;
 
+
+//Used for easier viewing of EVENT class in thymeleafs
 public class EventDisplay {
 	private Event event;
 	private int participating;
 	private boolean userParticipating;
+	private boolean isOrganizer;
 	
 	//SETS EVENT AND CALCULATES PARTICIPANT AMOUNT
 	public EventDisplay(Event event) {
@@ -15,7 +18,7 @@ public class EventDisplay {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
+	
 	//SETTERS
 	public void setEvent(Event event) {
 		this.event = event;
@@ -29,6 +32,11 @@ public class EventDisplay {
 		this.userParticipating = userParticipating;
 	}
 
+	
+	public void setOrganizer(boolean isOrganizer) {
+		this.isOrganizer = isOrganizer;
+	}
+
 	//GETTERS
 	public Event getEvent() {
 		return event;
@@ -40,6 +48,11 @@ public class EventDisplay {
 
 	public boolean isUserParticipating() {
 		return userParticipating;
+	}
+
+	
+	public boolean isOrganizer() {
+		return isOrganizer;
 	}
 
 	//TOSTRING

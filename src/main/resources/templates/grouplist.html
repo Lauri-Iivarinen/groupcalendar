@@ -14,21 +14,27 @@ LISTS ALL GROUPS THAT EXIST AND ALLOWS AUTHENTICATED USERS TO APPLY FOR THEM
 	<link href="https://fonts.googleapis.com/css2?family=Signika&display=swap" rel="stylesheet">
 </head>
 <body>
-	<form class="logout" th:action="@{/logout}" method="post">
-		<input type="submit" value="logout"/>
-	</form>
-	<h1>Group calendar</h1>
-	<br />
-	
+	<header>
+		<form class="logout" th:action="@{/logout}" method="post">
+			<input type="submit" value="LOGOUT"/>
+		</form>
+		<form class="home" th:action="@{/home}" method="post">
+			<input type="submit" value="HOME"/>
+		</form>
+	</header>
 	<br>
-	<h3>Groups:</h3>
-	<table class="list">
-		<tr><th>Group name:</th><th>Action</th></tr>
-		<tr th:each="group: ${groups}">
-			<td th:text="${group.groupName}"></td>
-			<td><a class="tableLink" th:href="@{/apply/{id} (id=${group.groupId})}">Apply</a></td>
-		</tr>
-	</table>
-	
+	<br>
+	<div class="element">
+		<a class="link" href="/home">Back</a>
+		<h3>Groups:</h3>
+		<table class="list">
+			<tr><th>Group name:</th><th>Description:</th><th>Action:</th></tr>
+			<tr th:each="group: ${groups}">
+				<td th:text="${group.groupName}"></td>
+				<td th:text="${group.description}"></td>
+				<td><a class="tableLink" th:href="@{/apply/{id} (id=${group.groupId})}">Apply</a></td>
+			</tr>
+		</table>
+	</div>
 </body>
 </html>

@@ -14,9 +14,14 @@ TEMPLATE FOR FAILED USER INTERACTION
 	<link href="https://fonts.googleapis.com/css2?family=Signika&display=swap" rel="stylesheet">
 </head>
 <body>
-	<form class="logout" th:action="@{/logout}" method="post">
-		<input type="submit" value="logout"/>
-	</form>
+	<header>
+		<form class="logout" th:action="@{/logout}" method="post">
+			<input type="submit" value="LOGOUT"/>
+		</form>
+		<form class="home" th:action="@{/home}" method="post">
+			<input type="submit" value="HOME"/>
+		</form>
+	</header>
 	
 	<p th:text="${message}"></p>
 </body>

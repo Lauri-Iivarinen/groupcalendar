@@ -9,13 +9,21 @@ public class NewGroupForm {
 	@NotEmpty
     @Size(min=4, max=30)
 	private String groupName;
+	
+	@NotEmpty
+    @Size(min=1, max=30)
+	private String description;
 
 	private Long owner;
 	
 	
-	public NewGroupForm(@NotEmpty @Size(min = 4, max = 30) String groupName, Long owner) {
+
+
+	public NewGroupForm(@NotEmpty @Size(min = 4, max = 30) String groupName,
+			@NotEmpty @Size(min = 1, max = 30) String description, Long owner) {
 		super();
 		this.groupName = groupName;
+		this.description = description;
 		this.owner = owner;
 	}
 
@@ -30,6 +38,10 @@ public class NewGroupForm {
 	}
 
 
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
 	public void setOwner(Long owner) {
 		this.owner = owner;
 	}
@@ -40,6 +52,10 @@ public class NewGroupForm {
 		return groupName;
 	}
 
+
+	public String getDescription() {
+		return description;
+	}
 
 	public Long getOwner() {
 		return owner;

@@ -115,6 +115,7 @@ public class GroupController {
 		for (Event event: group.getEvents()) {
 			EventDisplay display = new EventDisplay(event);
 			if (event.getParticipants().contains(user)) display.setUserParticipating(true);
+			if (event.getOrganizerName().equals(auth.getName())) display.setOrganizer(true);
 			events.add(display);
 		}
 		
@@ -173,7 +174,7 @@ public class GroupController {
 	@PostMapping("/creategroup")
 	public String postCreateGroup(@Valid @ModelAttribute("group") NewGroupForm group,BindingResult br,Authentication auth) {
 		//general errors
-		if(br.hasErrors()) return "/newgroup";
+		if(br.hasErrors()) return "creategroup";
 				
 		//existing groupname
 		if(groupRepo.findByGroupName(group.getGroupName()) != null) {
@@ -186,6 +187,7 @@ public class GroupController {
 		newgroup.setGroupName(group.getGroupName());
 		newgroup.setOwner(group.getOwner());
 		newgroup.addMember(userRepo.findByUsername(auth.getName()));
+		newgroup.setDescription(group.getDescription());
 				
 		groupRepo.save(newgroup);
 				

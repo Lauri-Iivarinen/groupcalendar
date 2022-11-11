@@ -9,6 +9,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import com.example.groupcalendar.domain.Event;
 import com.example.groupcalendar.domain.EventDisplay;
@@ -37,6 +38,7 @@ public class IndexController {
 	
 	//LISTS GROUPS AND USERS 
 	//TODO REMOVE UPON LAUNCH or restrict to admin
+	@PreAuthorize("hasAuthority('ADMIN')")
 	@GetMapping("/list")
 	public String listUsersAndGroups(Model model) {
 		model.addAttribute("users",userRepo.findAll());
@@ -68,5 +70,11 @@ public class IndexController {
 		model.addAttribute("groups",usersGroups);
 		model.addAttribute("user",user);
 		return "homepage";
+	}
+	
+	//SAME AS GET
+	@PostMapping("/home")
+	public String postDefaultHomePage() {
+		return "redirect:/home";
 	}
 }

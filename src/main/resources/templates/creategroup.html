@@ -14,21 +14,31 @@ TEMPLATE FOR FAILED USER INTERACTION
 	<link href="https://fonts.googleapis.com/css2?family=Signika&display=swap" rel="stylesheet">
 </head>
 <body>
-	<form class="logout" th:action="@{/logout}" method="post">
-		<input type="submit" value="logout"/>
-	</form>
-	
-	<h3>Create new group</h3>
-	<div>
-		<form class="formOut" th:object="${group}" th:action="@{/creategroup}" action="#" method="post">
-			<div class="form"><label>Name for the group:</label><input th:field="*{groupName}"/>
-			<p th:if="${#fields.hasErrors('groupName')}" th:errors="*{groupName}">error</p>
-			</div>
-			<input type="hidden" th:field="*{owner}" />
-			<br />
-			<input type="submit" value="CREATE" />
-		
+	<header>
+		<form class="logout" th:action="@{/logout}" method="post">
+			<input type="submit" value="LOGOUT"/>
 		</form>
+		<form class="home" th:action="@{/home}" method="post">
+			<input type="submit" value="HOME"/>
+		</form>
+	</header>
+	<div class="element">
+		<a class="link" href="/home">Back</a>
+		<h3>Create new group</h3>
+		<div>
+			<form class="formOut" th:object="${group}" th:action="@{/creategroup}" action="#" method="post">
+				<div class="form"><label>Name for the group:</label><input th:field="*{groupName}"/>
+				<p th:if="${#fields.hasErrors('groupName')}" th:errors="*{groupName}">error</p>
+				</div>
+				<div class="form"><label>Description:</label><input th:field="*{description}"/>
+				<p th:if="${#fields.hasErrors('description')}" th:errors="*{description}">error</p>
+				</div>
+				<input type="hidden" th:field="*{owner}" />
+				<br />
+				<input type="submit" value="CREATE" />
+			
+			</form>
+		</div>
 	</div>
 </body>
 </html>

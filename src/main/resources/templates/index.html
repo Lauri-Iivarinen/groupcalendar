@@ -14,14 +14,24 @@ INDEX PAGE FOR COMPLETELY NEW USERS
 	<link href="https://fonts.googleapis.com/css2?family=Signika&display=swap" rel="stylesheet">
 </head>
 <body>
-	<form class="logout" th:action="@{/logout}" method="post">
-		<input type="submit" value="logout"/>
-	</form>
-	<h1>Group calendar</h1>
-	<p>WORK IN PROGRESS :)</p>
-	<div>
-	<a class="link" href="/login">Login</a>
-	<a class="link" href="/signup">Create new account</a>
+
+	<header>
+		<form class="logout" th:action="@{/logout}" method="post">
+			<input type="submit" value="logout"/>
+		</form>
+	</header>
+	<div class="element">
+		<h1>Group calendar</h1>
+		<div>
+		<p>- Find groups</p>
+		<p>- Create new groups for you and your friends</p>
+		<p>- Organize events with your group</p>
+		</div>
+	</div>
+	<div class="elementFull">
+		<h3>To get started please login or create new account:</h3>
+		<a class="link" href="/login">Login</a>
+		<a class="link" href="/signup">Create new account</a>
 	</div>
 </body>
 </html>

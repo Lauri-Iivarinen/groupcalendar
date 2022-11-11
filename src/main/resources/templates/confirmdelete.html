@@ -14,11 +14,20 @@ TEMPLATE FOR FAILED USER INTERACTION
 	<link href="https://fonts.googleapis.com/css2?family=Signika&display=swap" rel="stylesheet">
 </head>
 <body>
+	<header>
+		<form class="logout" th:action="@{/logout}" method="post">
+			<input type="submit" value="LOGOUT"/>
+		</form>
+		<form class="home" th:action="@{/home}" method="post">
+			<input type="submit" value="HOME"/>
+		</form>
+	</header>
 	<div th:object="${group}">
 	
-	
+	<div class="element">
+	<h1>Confirm deletion</h1>
 	<form class="formOut" th:object="${group}" th:action="@{/confirmdelete}" action="#" method="post">
-	<p>Are you sure you want to delete group: <label class="red" th:text="${group.groupName}"></label></p>
+	<p>Are you sure you want to delete group:<br> <label class="red" th:text="${group.groupName}"></label></p>
 		<div class="form"><p>Confirm deletion by typing group name</p><input th:field="*{confirmGroupName}" /></div><br>
 		<input type="hidden" th:field="*{groupId}"/>
 		<input type="hidden" th:field="*{groupName}"/>
@@ -27,6 +36,8 @@ TEMPLATE FOR FAILED USER INTERACTION
 		</div>
 	</form>
 	<p class="red" th:text="${message}"></p>
+	</div>
+	
 	</div>
 </body>
 </html>

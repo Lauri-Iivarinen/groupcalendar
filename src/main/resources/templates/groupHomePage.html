@@ -14,18 +14,25 @@ HOMEPAGE FOR A CERTAIN GROUP
 	<link href="https://fonts.googleapis.com/css2?family=Signika&display=swap" rel="stylesheet">
 </head>
 <body>
-	<form class="logout" th:action="@{/logout}" method="post">
-		<input type="submit" value="logout"/>
-	</form>
-	<h1>Group calendar</h1>
+	<header>
+		<form class="logout" th:action="@{/logout}" method="post">
+			<input type="submit" value="LOGOUT"/>
+		</form>
+		<form class="home" th:action="@{/home}" method="post">
+			<input type="submit" value="HOME"/>
+		</form>
+	</header>
+	
 	<div th:object="${group}" action="#">
-		<h3 th:text="${group.groupName}"></h3>
+		<div class="element">
+		<h1 th:text="${group.groupName}"></h1>
+		<p th:text="${group.description}"></p>
 		<h4>Members:</h4>
 		<table class="list">
-			<tr><th>First name</th><th>Last name</th><th>Username</th><th></th></tr>
+			<tr><th>First name</th><th>Last name</th><th>Username</th><th th:if="${owner}">Action</th></tr>
 			<tr th:each="member : ${group.members}">
 				<td th:text="${member.firstName}"></td>
-				<td th:text="${member.lastName}"></td>
+				<td>-------</td>
 				<td th:text="${member.username}"></td>
 				<td th:if="${owner}">
 					<span th:if="${member.id == group.owner}">owner</span>
@@ -33,17 +40,19 @@ HOMEPAGE FOR A CERTAIN GROUP
 		   				<a class="tableLink" th:href="@{/removemember/{groupId}/{id} (id=${member.id},groupId=${group.groupId})}">Remove member</a>
 		   			</span>
 				</td>
+
 			</tr>
 		</table>
 		
 		<br />
 		<a class="link" th:href="@{/{id}/applicants (id=${group.groupId})}">Applicants</a>
+		</div>
 		
-		<div>
-		<p>Upcoming events</p>
+		<div class="elementFull">
+		<h3>Upcoming events</h3>
 		
 		<table class="list">
-		<tr><th>Event</th><th>Location</th><th>Date</th><th>Organizer</th><th>Participants</th><th>Participating</th><th></th></tr>
+		<tr><th>Event</th><th>Location</th><th>Date</th><th>Organizer</th><th>Participants</th><th>Participating</th><th>Action</th><th>Organizer action</th></tr>
 		<tr th:each="display : ${events}">
 			<td th:text="${display.event.title}"></td>
 			<td th:text="${display.event.location}"></td>
@@ -58,16 +67,22 @@ HOMEPAGE FOR A CERTAIN GROUP
 				<span th:if="${display.userParticipating}" class="green"><a class="tableLink" th:href="@{/participationstatus/{eventId}/{action} (eventId=${display.event.eventId},action=0)}">Cancel</a></span>
 				<span th:unless="${display.userParticipating}" class="red"><a class="tableLink" th:href="@{/participationstatus/{eventId}/{action} (eventId=${display.event.eventId},action=0)}">Participate</a></span>
 			</td>
+			<td>
+				<span th:if="${display.isOrganizer}" class="green"><a class="tableLink" th:href="@{/delete-event/{eventId} (eventId=${display.event.eventId})}">Remove event</a></span>
+				<span th:unless="${display.isOrganizer}" class="red"></span>
+			</td>
 		</tr>
 		</table>
 		<br />
 		<a class="link" th:href="@{/newevent/{id} (id=${group.groupId})}">Create new event</a>
 		</div>
 	
-	<div th:if="${owner}">
-	<p>Group owner settings:</p>
-	<a class="link" th:href="@{/deletegroup/{id} (id=${group.groupId})}">Delete group</a>
-	</div>
+
+		<div th:if="${owner}" class="element">
+		<p>Group owner settings:</p>
+		<a class="link" th:href="@{/deletegroup/{id} (id=${group.groupId})}">Delete group</a>
+		</div>
+
 	
 	</div>
 </body>

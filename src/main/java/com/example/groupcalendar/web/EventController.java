@@ -1,12 +1,14 @@
 package com.example.groupcalendar.web;
 
-import java.util.ArrayList;
 import java.util.List;
+
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,6 +18,7 @@ import com.example.groupcalendar.domain.Event;
 import com.example.groupcalendar.domain.EventRepository;
 import com.example.groupcalendar.domain.Group;
 import com.example.groupcalendar.domain.GroupRepository;
+import com.example.groupcalendar.domain.NewEventForm;
 import com.example.groupcalendar.domain.User;
 import com.example.groupcalendar.domain.UserRepository;
 
@@ -43,12 +46,10 @@ public class EventController {
 	@GetMapping("/newevent/{id}")
 	public String newEvent(@PathVariable("id") Long id,Model model,Authentication auth) {
 		
-		User user = userRepo.findByUsername(auth.getName());
-		
 		//Checks for valid groupmember
 		if(!validMember(userRepo.findByUsername(auth.getName()), groupRepo.findById(id).get())) return "redirect:/notingroup";
 		
-		Event event = new Event();
+		NewEventForm event = new NewEventForm();
 		event.setGroup(groupRepo.findById(id).get());
 		event.setOrganizerName(auth.getName());
 		
@@ -58,8 +59,16 @@ public class EventController {
 	
 	//SAVES THE EVENT TO DB
 	@PostMapping("/newevent")
-	public String postNewEvent(@ModelAttribute("event") Event event,Authentication auth) {
+	public String postNewEvent(@Valid @ModelAttribute("event") NewEventForm newEvent,BindingResult br, Authentication auth) {
 		
+		if (br.hasErrors()) return "createEvent";
+		
+		Event event = new Event();
+		event.setTitle(newEvent.getTitle());
+		event.setDate(newEvent.getDate());
+		event.setLocation(newEvent.getLocation());
+		event.setGroup(newEvent.getGroup());
+		event.setOrganizerName(newEvent.getOrganizerName());
 		event.addParticipant(userRepo.findByUsername(auth.getName()));
 		eventRepo.save(event);
 		return "redirect:/grouphome/" + event.getGroup().getGroupId();
@@ -87,6 +96,18 @@ public class EventController {
 		//ACTION = 1 ONLY WHEN METHOD IS CALLED FROM /HOME
 		if (action==1) return "redirect:/home";
 		
+		return "redirect:/grouphome/" + event.getGroup().getGroupId();
+	}
+	
+	//DELETING EVENTS
+	@GetMapping("/delete-event/{id}")
+	public String removeEvent(@PathVariable("id") Long id,Authentication auth) {
+		Event event = eventRepo.findById(id).get();
+		User user = userRepo.findByUsername(auth.getName());
+		
+		//check for valid groupmember
+		if(!validMember(user,event.getGroup())) return "redirect:/notingroup";
+		if(event.getOrganizerName().equals(user.getUsername())) eventRepo.delete(event);
 		return "redirect:/grouphome/" + event.getGroup().getGroupId();
 	}
 	

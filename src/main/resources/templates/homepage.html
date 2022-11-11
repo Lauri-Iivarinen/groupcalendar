@@ -14,49 +14,61 @@ USERS PERSONAL HOMEPAGE
 	<link href="https://fonts.googleapis.com/css2?family=Signika&display=swap" rel="stylesheet">
 </head>
 <body>
-	<form class="logout" th:action="@{/logout}" method="post">
-		<input type="submit" value="logout"/>
-	</form>
-	<h1>Group calendar</h1>
-	<h3 th:inline="text">Welcome [[${#httpServletRequest.remoteUser}]]</h3>
+	<header>
+		<form class="logout" th:action="@{/logout}" method="post">
+			<input type="submit" value="LOGOUT"/>
+		</form>
+		<form class="home" th:action="@{/home}" method="post">
+			<input type="submit" value="HOME"/>
+		</form>
+	</header>
+	<br />
+	<br />
+	<br />
+	
 	
 	<div th:object="${user}"><!-- USER RELATED INFO HERE -->
 	
-	<p></p>
-	<a class="link" href="/grouplist">Find new groups</a>
-	<br>
 
-	<h3>Groups</h3>
-	<a class="link" href="/creategroup">Create new group</a>
-	<br />
-	<br />
-	<table class="list">
-		<tr><th>Name</th><th>Homepage</th><th>action</th></tr>
-		<tr th:each="group : ${groups}">
-			<td th:text="${group.groupName}"></td>
-			<td><a class="tableLink" th:href="@{/grouphome/{id} (id=${group.groupId})}">SELECT</a></td>
-			<td>
-				<span th:if="${user.id == group.owner}">owner</span>
-				<span th:unless="${user.id == group.owner}">
-					<a th:href="@{/leavegroup/{id} (id=${group.groupId})}">LEAVE</a>
-				</span>
-			</td>
-		</tr>
-	</table>
+	<div class="element">
+		<h1 th:inline="text">Welcome [[${#httpServletRequest.remoteUser}]]</h1>
+		<h3>Groups</h3>
+		<a class="link" href="/grouplist">Find new groups</a>
+		<br>
+		<br>
+		<a class="link" href="/creategroup">Create new group</a>
+		<p></p>
+	</div>
+	<div class="element">
+		<h3>My groups</h3>
+		<table class="list">
+			<tr><th>Name</th><th>Homepage</th><th>Action</th></tr>
+			<tr th:each="group : ${groups}">
+				<td th:text="${group.groupName}"></td>
+				<td><a class="tableLink" th:href="@{/grouphome/{id} (id=${group.groupId})}">SELECT</a></td>
+				<td>
+					<span th:if="${user.id == group.owner}">owner</span>
+					<span th:unless="${user.id == group.owner}">
+						<a class="tableLink" th:href="@{/leavegroup/{id} (id=${group.groupId})}">LEAVE</a>
+					</span>
+				</td>
+			</tr>
+		</table>
+	</div>
 	
-	<div>
-	<h3>Your upcoming events:</h3>
-	<table class="list">
-	<tr><th>Event</th><th>Group</th><th>Date</th><th>Location</th><th>Participants</th><th></th></tr>
-	<tr th:each="event : ${events}">
-		<td th:text="${event.event.title}"></td>
-		<td th:text="${event.event.group.groupName}"></td>
-		<td th:text="${event.event.date}"></td>
-		<td th:text="${event.event.location}"></td>
-		<td th:text="${event.participating}"></td>
-		<td><a class="tableLink" th:href="@{/participationstatus/{eventId}/{action} (eventId=${event.event.eventId},action=1)}">Cancel participation</a></td>
-	</tr>
-	</table>
+	<div class="elementFull">
+		<h3>Upcoming events:</h3>
+		<table class="list">
+			<tr><th>Event</th><th>Group</th><th>Date</th><th>Location</th><th>Participants</th><th></th></tr>
+			<tr th:each="event : ${events}">
+				<td th:text="${event.event.title}"></td>
+				<td th:text="${event.event.group.groupName}"></td>
+				<td th:text="${event.event.date}"></td>
+				<td th:text="${event.event.location}"></td>
+				<td th:text="${event.participating}"></td>
+				<td><a class="tableLink" th:href="@{/participationstatus/{eventId}/{action} (eventId=${event.event.eventId},action=1)}">Cancel participation</a></td>
+			</tr>
+		</table>
 	</div>
 	
 	</div>

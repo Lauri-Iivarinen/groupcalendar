@@ -14,11 +14,16 @@ LISTS ALL APPLICANTS FOR A CERTAIN GROUP
 	<link href="https://fonts.googleapis.com/css2?family=Signika&display=swap" rel="stylesheet">
 </head>
 <body>
-	<form class="logout" th:action="@{/logout}" method="post">
-		<input type="submit" value="logout"/>
-	</form>
-	<h1>Group calendar</h1>
-	<div >
+	<header>
+		<form class="logout" th:action="@{/logout}" method="post">
+			<input type="submit" value="LOGOUT"/>
+		</form>
+		<form class="home" th:action="@{/home}" method="post">
+			<input type="submit" value="HOME"/>
+		</form>
+	</header>
+	
+	<div class="element">
 		<h4>Applicants:</h4>
 		<table class="list">
 			<tr><th>First name</th><th>Last name</th><th>Username</th><th></th></tr>

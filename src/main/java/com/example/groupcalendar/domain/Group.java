@@ -25,6 +25,8 @@ public class Group {
 	
 	private String groupName;
 	
+	private String description;
+	
 	@ManyToMany
 	private List<User> members;
 	
@@ -59,6 +61,7 @@ public class Group {
 
 	}
 
+	//SETTERS
 	public void setGroupId(Long groupId) {
 		this.groupId = groupId;
 	}
@@ -68,6 +71,9 @@ public class Group {
 	}
 
 
+	public void setDescription(String description) {
+		this.description = description;
+	}
 
 	public void setApplicants(List<User> applicants) {
 		this.applicants = applicants;
@@ -81,6 +87,8 @@ public class Group {
 		this.members = members;
 	}
 
+	
+	//GETTERS
 	public Long getGroupId() {
 		return groupId;
 	}
@@ -89,7 +97,9 @@ public class Group {
 		return groupName;
 	}
 
-
+	public String getDescription() {
+		return description;
+	}
 
 	public List<User> getMembers() {
 		return members;
