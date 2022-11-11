@@ -2,26 +2,19 @@
 
 End project for course 'Palvelinohjelmointi' (backend programming)
 
-- Language: java
-- Framework: Spring
-- Database: Postgres
+ - Language: Java
+ - Framework: Spring
+ - Database: Postgres
 
 Product is a groupcalendar where authenticated user can:
 
 - Find groups
-
 - Join groups
-
 - Leave groups
-
 - Create groups
-
 - Delete groups they created
-
 - Create events only visible for group members
-
 - Delete events they created
-
 - Choose to signup/cancel signup in events
 
 
