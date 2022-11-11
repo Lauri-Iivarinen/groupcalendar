@@ -64,7 +64,7 @@ HOMEPAGE FOR A CERTAIN GROUP
 				<span th:unless="${display.userParticipating}" class="red">No</span>
 			</td>
 			<td>
-				<span th:if="${display.userParticipating}" class="green"><a class="tableLink" th:href="@{/participationstatus/{eventId}/{action} (eventId=${display.event.eventId},action=0)}">Cancel</a></span>
+				<span th:if="${display.userParticipating}" class="green"><a class="tableLink" th:href="@{/participationstatus/{eventId}/{action} (eventId=${display.event.eventId},action=0)}">Cancel participation</a></span>
 				<span th:unless="${display.userParticipating}" class="red"><a class="tableLink" th:href="@{/participationstatus/{eventId}/{action} (eventId=${display.event.eventId},action=0)}">Participate</a></span>
 			</td>
 			<td>
