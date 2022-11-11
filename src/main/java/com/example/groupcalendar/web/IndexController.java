@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.example.groupcalendar.domain.Event;
 import com.example.groupcalendar.domain.EventDisplay;
-import com.example.groupcalendar.domain.EventRepository;
 import com.example.groupcalendar.domain.Group;
 import com.example.groupcalendar.domain.GroupRepository;
 import com.example.groupcalendar.domain.User;
@@ -27,8 +26,6 @@ public class IndexController {
 	private UserRepository userRepo;
 	@Autowired 
 	private GroupRepository groupRepo;
-	@Autowired 
-	private EventRepository eventRepo;
 
 	//INDEX PAGE
 	@GetMapping("/")

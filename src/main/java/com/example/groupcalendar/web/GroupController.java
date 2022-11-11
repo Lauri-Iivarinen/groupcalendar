@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.example.groupcalendar.domain.ConfirmDeleteForm;
 import com.example.groupcalendar.domain.Event;
 import com.example.groupcalendar.domain.EventDisplay;
-import com.example.groupcalendar.domain.EventRepository;
 import com.example.groupcalendar.domain.Group;
 import com.example.groupcalendar.domain.GroupRepository;
 import com.example.groupcalendar.domain.NewGroupForm;
@@ -36,8 +35,6 @@ public class GroupController {
 	@Autowired 
 	private GroupRepository groupRepo;
 	
-	@Autowired 
-	private EventRepository eventRepo;
 	
 	//CHECKS IF CURRENT USER IS PART OF A GROUP
 	public boolean validMember(User user,Group group) {
