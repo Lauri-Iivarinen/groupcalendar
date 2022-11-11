@@ -2,6 +2,10 @@
 
 End project for course 'Palvelinohjelmointi' (backend programming)
 
+Language: java
+Framework: Spring
+Database: Postgres
+
 Product is a groupcalendar where authenticated user can:
 
 - Find groups
